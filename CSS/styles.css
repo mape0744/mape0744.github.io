@@ -3,21 +3,21 @@ body {
 }
 
 h1 {
-  font-style: oblique;
+  font-style: normal;
   font-size: 250%;
   text-align: left;
-  font-family: sanfranciscensis;
+  font-family: "Dejanire Headline";
 }
 
 h2 {
-  font-style: italic;
+  font-style: normal;
   font-size: 300%;
   text-align: left;
-  font-family: fantasy;
+  font-family: "Dejanire Headline";
 }
 
 p {
   color: brown;
   font-size: 150%;
-  font-family: serif;
+  font-family: "Dejanire Headline";
 }
