@@ -1,0 +1,22 @@
+body {
+  background-color: blue;
+}
+
+h1 {
+  font-style: oblique;
+  font-size: 250%;
+  text-align: center;
+  font-family: sanfranciscensis;
+}
+
+h2 {
+  font-style: italic;
+  font-size: 300%;
+  font-family: fantasy;
+}
+
+p {
+  color: brown;
+  font-size: 150%;
+  font-family: serif;
+}
