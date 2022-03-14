@@ -6,7 +6,7 @@ h1 {
   font-style: normal;
   font-size: 250%;
   text-align: left;
-  font-family: "Dejanire Headline";
+  font-family: "Courier";
   color: #9f4f60;
 }
 
@@ -14,14 +14,14 @@ h2 {
   font-style: normal;
   font-size: 300%;
   text-align: left;
-  font-family: "Dejanire Headline";
+  font-family: "Courier";
   color: #30354e;
 }
 
 p {
   color: #6caa8a;
   font-size: 150%;
-  font-family: "Dejanire Headline";
+  font-family: "Courier";
   /* Media Queries: Tablet Landscape */
 @media screen and (max-width: 1060px) {
     #primary { width:67%; }
@@ -34,6 +34,6 @@ p {
     #secondary { width:100%; margin:0; border:none; }
 
   img { max-width: 100%; height: auto; }
-  
+
 
 }
