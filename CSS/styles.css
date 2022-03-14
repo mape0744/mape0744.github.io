@@ -45,6 +45,18 @@ p {
     #secondary { width:30%; margin-left:3%;}
 }
 
+a {
+  color: #6caa8a;
+  font-size: 150%;
+  font-family: "Courier";
+}
+
+.list {
+  color: #6caa8a;
+  font-size: 150%;
+  font-family: "Courier";
+}
+
 
 /*@media screen and (max-width: 768px) {
     #primary { width:100%; }
