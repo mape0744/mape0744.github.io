@@ -28,7 +28,7 @@ h2 {
 }
 h3 {
   font-style: normal;
-  font-size: 300%;
+  font-size: 3000%;
   text-align: left;
   font-family: "Courier";
   color: #30354e;
@@ -63,7 +63,7 @@ a {
     #secondary { width:100%; margin:0; border:none; }*/
 
     img {
-      width:100%;
+      width:auto;
       height:auto;
     }
 
