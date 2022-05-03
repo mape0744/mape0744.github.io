@@ -5,7 +5,7 @@
 		font-size: 45px;
 	}
 
-	/* 3*3 Grid */
+
 	#b1, #b2, #b3, #b4, #b5,
 	#b6, #b7, #b8, #b9 {
 		width: 80px;
@@ -17,7 +17,7 @@
 		text-align: center;
 	}
 
-	/* Reset Button */
+
 	#but {
 		box-sizing: border-box;
 		width: 95px;
@@ -34,7 +34,7 @@
 		cursor: pointer;
 	}
 
-	/* Player turn space */
+
 	#print {
 		font-family: Verdana,
 			Geneva, Tahoma, sans-serif;
@@ -43,12 +43,12 @@
 		font-size: 20px;
 	}
 
-	/* Main Container */
+
 	#main {
 		text-align: center;
 	}
 
-	/* Game Instruction Text */
+
 	#ins {
 		font-family: Verdana,
 			Geneva, Tahoma, sans-serif;
