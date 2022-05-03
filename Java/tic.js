@@ -1,88 +1,106 @@
-const statusDisplay = document.querySelector('.game--status');
+//stores player turns
+      let currentPlayer = "x";
 
-let gameActive = true;
-let currentPlayer = "X";
-let gameState = ["", "", "", "", "", "", "", "", ""];
+      //stores the status of the game, whether its over or still in play
+      let gameStatus = "Game On";
 
-const winningMessage = () => `Player ${currentPlayer} has won!`;
-const drawMessage = () => `Game ended in a draw!`;
-const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
+      //Gets all Boxes elements
+      const boxes = document.getElementsByClassName("box");
 
-statusDisplay.tictactoeHTML = currentPlayerTurn();
+      //loops through all the elements
+      for (let i = 0; i < boxes.length; i++) {
+        //adds event listener to each box;
+        boxes[i].addEventListener("click", function() {
+          //checks if the box has an x or an o in it and also checks if the game is still on
+          if (boxes[i].innerHTML.trim() == "" && gameStatus == "Game On") {
+            //adds x or o for the current play in their choosen box
+            boxes[i].innerHTML = currentPlayer;
 
-const winningConditions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-];
+            //changes player turns
+            currentPlayer = currentPlayer == "x" ? "o" : "x";
 
-function handleCellPlayed(clickedCell, clickedCellIndex) {
-    gameState[clickedCellIndex] = currentPlayer;
-    clickedCell.tictactoeHTML = currentPlayer;
-}
+            //changes player's turn label on top of the game
+            document.getElementById(
+              "player"
+            ).innerHTML = currentPlayer.toUpperCase();
 
-function handlePlayerChange() {
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
-    statusDisplay.tictactoeHTML = currentPlayerTurn();
-}
+            //checks 3 matching x's or o's
+            if (
+              boxes[0].innerHTML == boxes[1].innerHTML &&
+              boxes[1].innerHTML == boxes[2].innerHTML &&
+              boxes[0].innerHTML.trim() != ""
+            ) {
+              showWinner(0, 1, 2);
+            } else if (
+              boxes[3].innerHTML == boxes[4].innerHTML &&
+              boxes[4].innerHTML == boxes[5].innerHTML &&
+              boxes[3].innerHTML.trim() != ""
+            ) {
+              showWinner(3, 4, 5);
+            } else if (
+              boxes[6].innerHTML == boxes[7].innerHTML &&
+              boxes[7].innerHTML == boxes[8].innerHTML &&
+              boxes[6].innerHTML.trim() != ""
+            ) {
+              showWinner(6, 7, 8);
+            } else if (
+              boxes[0].innerHTML == boxes[3].innerHTML &&
+              boxes[3].innerHTML == boxes[6].innerHTML &&
+              boxes[0].innerHTML.trim() != ""
+            ) {
+              showWinner(0, 3, 6);
+            } else if (
+              boxes[1].innerHTML == boxes[4].innerHTML &&
+              boxes[4].innerHTML == boxes[7].innerHTML &&
+              boxes[1].innerHTML.trim() != ""
+            ) {
+              showWinner(1, 4, 7);
+            } else if (
+              boxes[2].innerHTML == boxes[5].innerHTML &&
+              boxes[5].innerHTML == boxes[8].innerHTML &&
+              boxes[2].innerHTML.trim() != ""
+            ) {
+              showWinner(2, 5, 8);
+            } else if (
+              boxes[0].innerHTML == boxes[4].innerHTML &&
+              boxes[4].innerHTML == boxes[8].innerHTML &&
+              boxes[0].innerHTML.trim() != ""
+            ) {
+              showWinner(0, 4, 8);
+            } else if (
+              boxes[2].innerHTML == boxes[4].innerHTML &&
+              boxes[4].innerHTML == boxes[6].innerHTML &&
+              boxes[2].innerHTML.trim() != ""
+            ) {
+              showWinner(2, 4, 6);
+            }
+          }
+        });
+      }
 
-function handleResultValidation() {
-    let roundWon = false;
-    for (let i = 0; i <= 7; i++) {
-        const winCondition = winningConditions[i];
-        let a = gameState[winCondition[0]];
-        let b = gameState[winCondition[1]];
-        let c = gameState[winCondition[2]];
-        if (a === '' || b === '' || c === '') {
-            continue;
+      //resets the game
+      document.getElementById("reset").addEventListener("click", function() {
+        for (let i = 0; i < boxes.length; i++) {
+          boxes[i].innerHTML = "";
+          boxes[i].style.backgroundColor = "#dee9ec";
+          boxes[i].style.color = "black";
         }
-        if (a === b && b === c) {
-            roundWon = true;
-            break
-        }
-    }
+        currentPlayer = "x";
+        document.getElementById("message").style.display = "none";
+        document.getElementById("player").innerHTML = "X";
+        gameStatus = "Game On";
+      });
 
-    if (roundWon) {
-        statusDisplay.tictactoeHTML = winningMessage();
-        gameActive = false;
-        return;
-    }
-
-    let roundDraw = !gameState.includes("");
-    if (roundDraw) {
-        statusDisplay.tictactoeHTML = drawMessage();
-        gameActive = false;
-        return;
-    }
-
-    handlePlayerChange();
-}
-
-function handleCellClick(clickedCellEvent) {
-    const clickedCell = clickedCellEvent.target;
-    const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
-
-    if (gameState[clickedCellIndex] !== "" || !gameActive) {
-        return;
-    }
-
-    handleCellPlayed(clickedCell, clickedCellIndex);
-    handleResultValidation();
-}
-
-function handleRestartGame() {
-    gameActive = true;
-    currentPlayer = "X";
-    gameState = ["", "", "", "", "", "", "", "", ""];
-    statusDisplay.tictactoeHTML = currentPlayerTurn();
-    document.querySelectorAll('.cell').forEach(cell => cell.tictactoeHTML = "");
-}
-
-
-document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
-document.querySelector('.game--restart').addEventListener('click', handleRestartGame);
+      //displays the winner
+      function showWinner(x, y, z) {
+        boxes[x].style.background = "#0d8b70";
+        boxes[x].style.color = "white";
+        boxes[y].style.background = "#0d8b70";
+        boxes[y].style.color = "white";
+        boxes[z].style.background = "#0d8b70";
+        boxes[z].style.color = "white";
+        document.getElementById("winner").innerHTML =
+          currentPlayer == "x" ? "O" : "X";
+        document.getElementById("message").style.display = "block";
+        gameStatus = "Game Over";
+      }
