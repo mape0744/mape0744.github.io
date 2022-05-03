@@ -1,25 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html><head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tic Tac Toe</title>
+
   <link rel="stylesheet" href="./CSS/style.css">
 
-
 </head>
+
 <body>
-	<h1>Tic Tac Toe Game</h1>
-<div class="game-area">
-  <div class="item" onClick="Place(0)" id="cell0"></div>
-  <div class="item" onClick="Place(1)" id="cell1"></div>
-  <div class="item" onClick="Place(2)" id="cell2"></div>
-  <div class="item" onClick="Place(3)" id="cell3"></div>
-  <div class="item" onClick="Place(4)" id="cell4"></div>
-  <div class="item" onClick="Place(5)" id="cell5"></div>
-  <div class="item" onClick="Place(6)" id="cell6"></div>
-  <div class="item" onClick="Place(7)" id="cell7"></div>
-  <div class="item" onClick="Place(8)" id="cell8"></div>
-</div>
-</body>
-</html>
+
+	<table>
+		<tbody><tr>
+			<td class="cell" id="0"></td>
+			<td class="cell" id="1"></td>
+			<td class="cell" id="2"></td>
+		</tr>
+		<tr>
+			<td class="cell" id="3"></td>
+			<td class="cell" id="4"></td>
+			<td class="cell" id="5"></td>
+		</tr>
+		<tr>
+			<td class="cell" id="6"></td>
+			<td class="cell" id="7"></td>
+			<td class="cell" id="8"></td>
+		</tr>
+	</tbody></table>
+	<div class="endgame" style="display: none;">
+		<div class="text"></div>
+	</div>
+	<button onclick="start()">Restart</button>
+
+  <script src="tic.js"></script>
+
+</body></html>
