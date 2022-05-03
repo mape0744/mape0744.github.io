@@ -26,7 +26,7 @@ h2 {
 }
 h3 {
   font-style: normal;
-  font-size: 200%;
+  font-size: 300%;
   text-align: left;
   font-family: "Courier";
   color: #30354e;
@@ -37,63 +37,3 @@ p {
   color: #6caa8a;
   font-size: 150%;
   font-family: "Courier";
-
-  @media screen and (min-width:400px) {
-    .box {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
-      gap: 20px;
-    }
-    .title{
-      grid-row: 1;
-      grid-column: 1 / 4;
-      padding: 20px;
-    }
-    .nav {
-      grid-row: 2 / 4;
-      grid-column: 1 / 2;
-      padding: 20px;
-    }
-    .content{
-      grid-row: 2 / 4;
-      grid-column: 2 / 4;
-      padding: 20px;
-    }
-  }
-
-  marquee img {
-    height: 300px;
-    width: 300px;
-    border-radius: 50%;
-  }
-
-  #gallery {
-     line-height: 1;
-     -webkit-column-count:3;
-     -webkit-column-gap:5px;
-     -moz-column-count:2;
-     -moz-column-gap:5px;
-     column-count:2;
-     column-gap:5px;
-  }
-
-  #gallery img {
-     float: left;
-     width: 200px;
-     height: 200px;
-     object-fit: cover;
-  }
-
-  @media screen and (max-width:399px) {
-    .box{
-      width: 100%;
-      height: auto;
-    }
-    .content{
-      grid-row: 2 / 4;
-      grid-column: 2 / 4;
-      padding: 20px;
-    }
-
-  }
