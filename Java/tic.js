@@ -1,97 +1,89 @@
+const statusDisplay = document.querySelector('.game--status');
 
-var cell = new Array(9);
-for (var i=0; i<9; i++) cell[i] = 0;
-var items=document.querySelectorAll(".item");
+let gameActive = true;
+let currentPlayer = "X";
+let gameState = ["", "", "", "", "", "", "", "", ""];
 
+const winningMessage = () => `Player ${currentPlayer} has won!`;
+const drawMessage = () => `Game ended in a draw!`;
+const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
 
-function Cross(value) {
-  items[value].innerHTML="X";
+statusDisplay.innerHTML = currentPlayerTurn();
 
+const winningConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
+function handleCellPlayed(clickedCell, clickedCellIndex) {
+    gameState[clickedCellIndex] = currentPlayer;
+    clickedCell.innerHTML = currentPlayer;
 }
 
-function Zero(value) {
-  items[value].innerHTML="O";
-
+function handlePlayerChange() {
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    statusDisplay.innerHTML = currentPlayerTurn();
 }
 
-function CheckVictory() {
-  if (cell[0] == cell[1] && cell[1] == cell[2] && cell[2] > 0) return true;
-  if (cell[3] == cell[4] && cell[4] == cell[5] && cell[5] > 0) return true;
-  if (cell[6] == cell[7] && cell[7] == cell[8] && cell[8] > 0) return true;
-  if (cell[6] == cell[3] && cell[3] == cell[0] && cell[0] > 0) return true;
-  if (cell[7] == cell[4] && cell[4] == cell[1] && cell[1] > 0) return true;
-  if (cell[8] == cell[5] && cell[5] == cell[2] && cell[2] > 0) return true;
-  if (cell[6] == cell[4] && cell[4] == cell[2] && cell[2] > 0) return true;
-  if (cell[0] == cell[4] && cell[4] == cell[8] && cell[8] > 0) return true;
-}
-
-function CompTurn() {
-  for (i=0; i<9; i++) if (cell[i] == 0) PutHere = i;
-  for (i=0; i<3; i++) {
-  if (cell[0] == cell[1] && cell[2] == 0 && cell[0] == i) PutHere = 2;
-  if (cell[0] == cell[2] && cell[1] == 0 && cell[0] == i) PutHere = 1;
-  if (cell[1] == cell[2] && cell[0] == 0 && cell[2] == i) PutHere = 0;
-  if (cell[3] == cell[4] && cell[5] == 0 && cell[3] == i) PutHere = 5;
-  if (cell[3] == cell[5] && cell[4] == 0 && cell[3] == i) PutHere = 4;
-  if (cell[4] == cell[5] && cell[3] == 0 && cell[5] == i) PutHere = 3;
-  if (cell[6] == cell[7] && cell[8] == 0 && cell[6] == i) PutHere = 8;
-  if (cell[6] == cell[8] && cell[7] == 0 && cell[6] == i) PutHere = 7;
-  if (cell[7] == cell[8] && cell[6] == 0 && cell[8] == i) PutHere = 6;
-
-  if (cell[6] == cell[3] && cell[0] == 0 && cell[6] == i) PutHere = 0;
-  if (cell[6] == cell[0] && cell[3] == 0 && cell[6] == i) PutHere = 3;
-  if (cell[3] == cell[0] && cell[6] == 0 && cell[3] == i) PutHere = 6;
-  if (cell[7] == cell[4] && cell[1] == 0 && cell[7] == i) PutHere = 1;
-  if (cell[7] == cell[1] && cell[4] == 0 && cell[7] == i) PutHere = 4;
-  if (cell[4] == cell[1] && cell[7] == 0 && cell[4] == i) PutHere = 7;
-  if (cell[8] == cell[5] && cell[2] == 0 && cell[8] == i) PutHere = 2;
-  if (cell[8] == cell[2] && cell[5] == 0 && cell[8] == i) PutHere = 5;
-  if (cell[5] == cell[2] && cell[8] == 0 && cell[5] == i) PutHere = 8;
-
-  if (cell[6] == cell[4] && cell[2] == 0 && cell[6] == i) PutHere = 2;
-  if (cell[6] == cell[2] && cell[4] == 0 && cell[6] == i) PutHere = 4;
-  if (cell[4] == cell[2] && cell[6] == 0 && cell[4] == i) PutHere = 6;
-  if (cell[0] == cell[4] && cell[8] == 0 && cell[0] == i) PutHere = 8;
-  if (cell[0] == cell[8] && cell[4] == 0 && cell[0] == i) PutHere = 4;
-  if (cell[4] == cell[8] && cell[0] == 0 && cell[4] == i) PutHere = 0;
-  }
-  Zero(PutHere);
-  cell[PutHere] = 2;
-  if (CheckVictory() == true) {
-    alert("JavaScript the BEST!!!");
-    GameOver();
-  }
-}
-
-function GameOver() {
-  for (i=0; i<9; i++)
-  {
-    cell[i] = 0;
-    items[i].innerHTML='';
-  }
-}
-
-function CheckNobody() {
-  no = false;
-  for (i=0; i<9; i++) if (cell[i] == 0) no = true;
-  if (no == false) {
-    alert("Draw");
-    GameOver();
-  }
-}
-
-function Place(value) {
-  if (cell[value] == 0) {
-    Cross(value);
-    cell[value] = 1;
-    if (CheckVictory() == true) {
-      alert("Congrats!!! You won");
-      GameOver();
+function handleResultValidation() {
+    let roundWon = false;
+    for (let i = 0; i <= 7; i++) {
+        const winCondition = winningConditions[i];
+        let a = gameState[winCondition[0]];
+        let b = gameState[winCondition[1]];
+        let c = gameState[winCondition[2]];
+        if (a === '' || b === '' || c === '') {
+            continue;
+        }
+        if (a === b && b === c) {
+            roundWon = true;
+            break
+        }
     }
-    else {
-      CheckNobody();
-      CompTurn();
-      CheckNobody();
+
+    if (roundWon) {
+        statusDisplay.innerHTML = winningMessage();
+        gameActive = false;
+        return;
     }
-  }
+
+    let roundDraw = !gameState.includes("");
+    if (roundDraw) {
+        statusDisplay.innerHTML = drawMessage();
+        gameActive = false;
+        return;
+    }
+
+    handlePlayerChange();
 }
+
+function handleCellClick(clickedCellEvent) {
+    const clickedCell = clickedCellEvent.target;
+    const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
+
+    if (gameState[clickedCellIndex] !== "" || !gameActive) {
+        return;
+    }
+
+    handleCellPlayed(clickedCell, clickedCellIndex);
+    handleResultValidation();
+}
+
+function handleRestartGame() {
+    gameActive = true;
+    currentPlayer = "X";
+    gameState = ["", "", "", "", "", "", "", "", ""];
+    statusDisplay.innerHTML = currentPlayerTurn();
+    document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
+}
+
+
+document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
+document.querySelector('.game--restart').addEventListener('click', handleRestartGame);
+ 
