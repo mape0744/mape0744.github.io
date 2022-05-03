@@ -62,8 +62,7 @@ p {
           border: 1px solid 30354e;
           margin: auto;
           border-radius: 4px;
-          font-family: Verdana,
-              Geneva, Tahoma, sans-serif;
+          font-family: Courier;
 
           background-color: 30354e;
           color: white;
@@ -73,8 +72,7 @@ p {
 
       /* Player turn space */
       #print {
-          font-family: Verdana,
-              Geneva, Tahoma, sans-serif;
+          font-family: Courier;
 
           color: 30354e;
           font-size: 20px;
@@ -87,8 +85,7 @@ p {
 
       /* Game Instruction Text */
       #ins {
-          font-family: Verdana,
-              Geneva, Tahoma, sans-serif;
+          font-family: Courier;
 
           color: 30354e;
           font-size: 17px;
