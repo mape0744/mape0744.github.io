@@ -36,7 +36,7 @@
     width: 100%;
   }
 }
-.nav {
+.menu {
   padding: 0px;
   margin: 0px;
   font-size: 20px;
@@ -125,6 +125,12 @@ h3 {
   text-align: left;
   font-family: "Courier";
   color: #30354e;
+}
+
+img {
+  width: auto;
+  height: 100%;
+  display: flex;
 }
 
 
