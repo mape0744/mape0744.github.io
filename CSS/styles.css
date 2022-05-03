@@ -1,12 +1,15 @@
 <style>
-	/* CSS Code */
-	/* Heading */
-	h1 {
-		color: orangered;
-		font-size: 45px;
-	}
 
-	/* 3*3 Grid */
+	h1 {
+  font-style: normal;
+  font-size: 45px;
+  text-align: left;
+  font-family: "Courier";
+  color: #9f4f60;
+}
+
+
+
 	#b1, #b2, #b3, #b4, #b5,
 	#b6, #b7, #b8, #b9 {
 		width: 80px;
@@ -18,7 +21,7 @@
 		text-align: center;
 	}
 
-	/* Reset Button */
+
 	#but {
 		box-sizing: border-box;
 		width: 95px;
@@ -26,35 +29,61 @@
 		border: 1px solid dodgerblue;
 		margin: auto;
 		border-radius: 4px;
-		font-family: Verdana,
-			Geneva, Tahoma, sans-serif;
+		font-family: "Courier";
 
-		background-color: dodgerblue;
+		background-color: #30354e;
 		color: white;
 		font-size: 20px;
 		cursor: pointer;
 	}
 
-	/* Player turn space */
-	#print {
-		font-family: Verdana,
-			Geneva, Tahoma, sans-serif;
 
-		color: dodgerblue;
+	#print {
+		font-family: "Courier";
+
+		color: #30354e;
 		font-size: 20px;
 	}
 
-	/* Main Container */
+
 	#main {
 		text-align: center;
 	}
 
-	/* Game Instruction Text */
-	#ins {
-		font-family: Verdana,
-			Geneva, Tahoma, sans-serif;
 
-		color: dodgerblue;
-		font-size: 17px;
+	#ins {
+		font-family: "Courier";
+
+		color: #30354e;
+		font-size: 30px;
 	}
 </style>
+
+h1 {
+  font-style: normal;
+  font-size: 100%;
+  text-align: left;
+  font-family: "Courier";
+  color: #9f4f60;
+}
+
+h2 {
+  font-style: normal;
+  font-size: 200%;
+  text-align: left;
+  font-family: "Courier";
+  color: #30354e;
+}
+h3 {
+  font-style: normal;
+  font-size: 300%;
+  text-align: left;
+  font-family: "Courier";
+  color: #30354e;
+}
+
+
+p {
+  color: #6caa8a;
+  font-size: 150%;
+  font-family: "Courier";
