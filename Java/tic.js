@@ -8,7 +8,7 @@ const winningMessage = () => `Player ${currentPlayer} has won!`;
 const drawMessage = () => `Game ended in a draw!`;
 const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
 
-statusDisplay.innerHTML = currentPlayerTurn();
+statusDisplay.tictactoeHTML = currentPlayerTurn();
 
 const winningConditions = [
     [0, 1, 2],
@@ -23,12 +23,12 @@ const winningConditions = [
 
 function handleCellPlayed(clickedCell, clickedCellIndex) {
     gameState[clickedCellIndex] = currentPlayer;
-    clickedCell.innerHTML = currentPlayer;
+    clickedCell.tictactoeHTML = currentPlayer;
 }
 
 function handlePlayerChange() {
     currentPlayer = currentPlayer === "X" ? "O" : "X";
-    statusDisplay.innerHTML = currentPlayerTurn();
+    statusDisplay.tictactoeHTML = currentPlayerTurn();
 }
 
 function handleResultValidation() {
@@ -48,14 +48,14 @@ function handleResultValidation() {
     }
 
     if (roundWon) {
-        statusDisplay.innerHTML = winningMessage();
+        statusDisplay.tictactoeHTML = winningMessage();
         gameActive = false;
         return;
     }
 
     let roundDraw = !gameState.includes("");
     if (roundDraw) {
-        statusDisplay.innerHTML = drawMessage();
+        statusDisplay.tictactoeHTML = drawMessage();
         gameActive = false;
         return;
     }
@@ -79,8 +79,8 @@ function handleRestartGame() {
     gameActive = true;
     currentPlayer = "X";
     gameState = ["", "", "", "", "", "", "", "", ""];
-    statusDisplay.innerHTML = currentPlayerTurn();
-    document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
+    statusDisplay.tictactoeHTML = currentPlayerTurn();
+    document.querySelectorAll('.cell').forEach(cell => cell.tictactoeHTML = "");
 }
 
 
